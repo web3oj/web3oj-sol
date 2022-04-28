@@ -10,8 +10,6 @@
 $ npm install
 ```
 
-
-
 ### `hardhat.config.js` 에 `rinkeby` 네트워크와 Account 설정
 
 ```js
@@ -45,7 +43,17 @@ RINKEBY_URL=https://rinkeby.infura.io/v3/<YOUR INFURA KEY>
 PRIVATE_KEY=<YOUR PRIVATEKEY KEY>
 ```
 
+### IDE 설정
 
+#### VSCode
+
+- [solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity)
+  - `.sol` 파일을 위한 extension
+
+#### IntelliJ
+
+- [Solidity](https://plugins.jetbrains.com/plugin/9475-solidity)
+  - `.sol` 파일을 위한 extension
 
 ## 예제 덧셈 문제풀기
 
@@ -59,31 +67,39 @@ PRIVATE_KEY=<YOUR PRIVATEKEY KEY>
 
    생성
 
-   ```
+   ```js
    // scripts/plusCalculatorSol.js
    const { ethers } = require("hardhat");
    const hre = require("hardhat");
-   
+
    async function calculatorSol() {
-       const [myAccount] = await ethers.getSigners();
-       
-       const MyPlusCalculator = await ethers.getContractFactory("MyPlusCalculator");
-       const myPlusCalculator = await MyPlusCalculator.connect(myAccount).deploy(); 
-       await myPlusCalculator.deployed();
-   
-       const instance = "0x000...000"; // 이곳에 덧셈 문제 인스턴스 컨트랙트 주소를 넣으세요
-       const PlusCalculatorProblem = await ethers.getContractFactory("PlusCalculatorProblem");
-       const plusCalculatorProblem = PlusCalculatorProblem.attach(instance);
-       plusCalculatorProblem.connect(myAccount).setPlusCalculator(myPlusCalculator.address);
+     const [myAccount] = await ethers.getSigners();
+
+     const MyPlusCalculator = await ethers.getContractFactory(
+       "MyPlusCalculator"
+     );
+     const myPlusCalculator = await MyPlusCalculator.connect(
+       myAccount
+     ).deploy();
+     await myPlusCalculator.deployed();
+
+     const instance = "0x000...000"; // 이곳에 덧셈 문제 인스턴스 컨트랙트 주소를 넣으세요
+     const PlusCalculatorProblem = await ethers.getContractFactory(
+       "PlusCalculatorProblem"
+     );
+     const plusCalculatorProblem = PlusCalculatorProblem.attach(instance);
+     plusCalculatorProblem
+       .connect(myAccount)
+       .setPlusCalculator(myPlusCalculator.address);
    }
-   
+
    async function main() {
-       calculatorSol();
+     calculatorSol();
    }
-   
+
    main().catch((error) => {
-       console.error(error);
-       process.exitCode = 1;
+     console.error(error);
+     process.exitCode = 1;
    });
    ```
 
@@ -94,4 +110,3 @@ PRIVATE_KEY=<YOUR PRIVATEKEY KEY>
    ```
 
 5. 제출하기 클릭으로 문제풀이를 마무리하세요.
-
