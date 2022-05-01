@@ -4,8 +4,11 @@
 
 ## 설정
 
-### 패키지 설치
+### node version
+- [hardhat](https://hardhat.org/tutorial/setting-up-the-environment.html)에서 노드 버전은 >= 12.0 을 지원하지만, 16 버전을 추천드립니다.
 
+
+### 패키지 설치
 ```shell
 $ npm install
 ```
