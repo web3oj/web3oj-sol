@@ -1,5 +1,7 @@
 # web3oj-sol
 
+![recommend-node-version](https://img.shields.io/badge/recommend--node--version-16.x-brightgreen)
+
 이 프로젝트는 [web3oj](https://app.web3oj.com/)의 문제를 풀수 있는 [hardhat](https://hardhat.org/)기반 개발환경을 제공합니다.
 
 ## 설정
